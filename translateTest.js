@@ -3,69 +3,67 @@ import { html } from './translate.js';
 
 const field = {
     brusher:{
-        name:             "Name",
-        uid:              "Individual UID",
-        subjectID:        "SubjectID",
-        dominantHand:     "Dominant Hand",
-        age:              "Age",
-        birthDate:        "Date of Birth",
-        gender:           "Gender",
-        id:               "Brusher ID",
-        startDate:        "Start Date",
-        language:         "Language",
-        locale:           "Locale",
-        matchGame:        "Match Game enabled",
-        points:           "Point Balance",
-        room:             "Current Room",
-        tutor:            "Tutor",
-        visualBrightness: "Screen Brightness",
-        visualSaturate:   "Screen Saturation",
-        volumeMaster:     "Master volume",
-        volumeVoice:      "Voice (volume)",
-        volumeMusic:      "Musc  (volume)",
-        volumeSFX:        "SFX   (volume)",
+        name:             html`Name`,
+        uid:              html`Individual UID`,
+        subjectID:        html`SubjectID`,
+        dominantHand:     html`Dominant Hand`,
+        age:              html`Age`,
+        birthDate:        html`Date of Birth`,
+        gender:           html`Gender`,
+        id:               html`Brusher ID`,
+        startDate:        html`Start Date`,
+        language:         html`Language`,
+        locale:           html`Locale`,
+        matchGame:        html`Match Game enabled`,
+        points:           html`Point Balance`,
+        room:             html`Current Room`,
+        tutor:            html`Tutor`,
+        visualBrightness: html`Screen Brightness`,
+        visualSaturate:   html`Screen Saturation`,
+        volumeMaster:     html`Master volume`,
+        volumeVoice:      html`Voice (volume)`,
+        volumeMusic:      html`Musc  (volume)`,
+        volumeSFX:        html`SFX   (volume)`,
         touchup: b=> Object.assign( {}, b, {     
-            age:       b.birthDate? Math.floor( (Date.now()-b.birthDate)/31556952000): "unknown",
-            birthDate: b.birthDate? new Date(b.birthDate).toLocaleDateString( 'en-US', dateStyle ): "unknown",
-            startDate: b.startDate? new Date(b.startDate.seconds? (1000 * b.startDate.seconds) : b.startDate ).toLocaleDateString( 'en-US', dateStyle ): "unknown",
+            age:       b.birthDate? Math.floor( (Date.now()-b.birthDate)/31556952000): html`unknown`,
+            birthDate: b.birthDate? new Date(b.birthDate).toLocaleDateString( 'en-US', dateStyle ): html`unknown`,
+            startDate: b.startDate? new Date(b.startDate.seconds? (1000 * b.startDate.seconds) : b.startDate ).toLocaleDateString( 'en-US', dateStyle ): html`unknown`,
             tutor:     b.tutor?     b.tutor.toUpperCase(): null,
             room:      b.room?      b.room.toUpperCase(): null,
-            dominantHand: ["left","unknown","right"][1+ Number(b.dominantHand)??0],
-            displayName: /Our Family/i.test(b.displayName)?                              `<span class="unnamed">no name</span>` :b.displayName,
+            dominantHand: [html`left`, html`unknown`, html`right`][1+ Number(b.dominantHand)??0],
+            displayName: /Our Family/i.test(b.displayName) ? html`<span class="unnamed">no name</span>` : b.displayName,
             })},
     account:{
-        name:             "Name",
-        uid:              "Account UID",
-        displayName:      "Display Name",
-        firstName:        "First Name",
-        lastName:         "Last Name",
-        email:            "Email",
-        telephone:        "Telephone",
-        timeZone:         "Time Zone",
-        created:          "Account Created",
-        lastLogin:        "Last Login",
-        tier:             "Account Tier",
-        created:          "First Log In",
-        lastLogin:        "Last Log In",
-        notifyReport:    "get Progress Reports",
-        notifyReminder:  "get Daily Reminders",
-        notifyRealtime:  "get Remote Alerts",
-		notifySpecial:   "get Special Offers",
-        userAgent:        "User Agent",
-        dataUseResearch:  "Data Use: Research",
-        dataUseNumeric:   "Data Use: Numeric",
-        dataUsePersonal:  "Data Use: Personal",
-        dataUseResearch:  "Data Use: Research",
-        dataUseSocial:    "Data Use: Social",
-        dataUseCommercial:"Data Use: Commercial",
-        dataUseOpen:      "Data Use: Open",
-        deviceCores:      "Device Cores",
-        informedConsent:  "Informed Consent",   
+        name:              html`Name`,
+        uid:               html`Account UID`,
+        displayName:       html`Display Name`,
+        firstName:         html`First Name`,
+        lastName:          html`Last Name`,
+        email:             html`Email`,
+        telephone:         html`Telephone`,
+        timeZone:          html`Time Zone`,
+        created:           html`First Log In`,
+        lastLogin:         html`Last Log In`,
+        tier:              html`Account Tier`,
+        notifyReport:      html`get Progress Reports`,
+        notifyReminder:    html`get Daily Reminders`,
+        notifyRealtime:    html`get Remote Alerts`,
+		notifySpecial:     html`get Special Offers`,
+        userAgent:         html`User Agent`,
+        dataUseResearch:   html`Data Use: Research`,
+        dataUseNumeric:    html`Data Use: Numeric`,
+        dataUsePersonal:   html`Data Use: Personal`,
+        dataUseResearch:   html`Data Use: Research`,
+        dataUseSocial:     html`Data Use: Social`,
+        dataUseCommercial: html`Data Use: Commercial`,
+        dataUseOpen:       html`Data Use: Open`,
+        deviceCores:       html`Device Cores`,
+        informedConsent:   html`Informed Consent`,   
         touchup: a=> Object.assign( {}, a, {     
-            name:        /Our Family/i.test(a.displayName)?(a.lastName ?? a.firstName ?? `<span class="unnamed">no name</span>`):a.displayName,
-            displayName: /Our Family/i.test(a.displayName)?                              `<span class="unnamed">no name</span>` :a.displayName,
-            created:   a.created?   new Date(a.created  ).toLocaleDateString( 'en-US', dateStyle ): "unknown",
-            lastLogin: a.lastLogin? new Date(a.lastLogin).toLocaleDateString( 'en-US', dateStyle ): "unknown",
+            name:        /Our Family/i.test(a.displayName) ? (a.lastName ?? a.firstName ?? html`<span class="unnamed">no name</span>`) : a.displayName,
+            displayName: /Our Family/i.test(a.displayName) ?                               html`<span class="unnamed">no name</span>` : a.displayName,
+            created:   a.created?   new Date(a.created  ).toLocaleDateString( 'en-US', dateStyle ): html`unknown`,
+            lastLogin: a.lastLogin? new Date(a.lastLogin).toLocaleDateString( 'en-US', dateStyle ): html`unknown`,
             userAgent: a.userAgent?.replaceAll(")",")<br/>")
             })},
     }   
@@ -312,7 +310,7 @@ const field = {
 
             // string to display a date in a readable format- but neglects time zone!!
             dateStr : epoch=> {          
-                    if( !epoch) return "No date";
+                    if(!epoch) return html`No date`;
                     const date = new Date(epoch);
                     const year = date.getFullYear();
                     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -420,15 +418,15 @@ const field = {
                     .filter(b=> !b.isNew && !b.deleted) 
                     .map( (b,i, cleanedBrushers )=>html`
                         <tr class="brusher" data-uid="${b.uid}" data-name="${b.name}" > 
-                            <td  class="maybe        id" >${   b.subjectID                      }</td>
-                            <td  class="brusher    name" >${   b.name??`<span class="unnamed">no name</span>`              }</td>
-                            <td  class="maybe last name" >${   a.lastName                       }</td> 
-                            <td  class="display    name" >${   a.displayName                    }</td> 
-                            <td  class="id"              >${   b.uid                            }</td>
-                            <td  class="first      name" >${   a.firstName                      }</td> 
-                            <td  class="last       name" >${   a.lastName                       }</td> 
-                            <td  class="last       name" >${   a.telephone                      }</td> 
-                            <td  class="last       name" >${   a.version                        }</td> 
+                            <td  class="maybe        id" >${b.subjectID                      }</td>
+                            <td  class="brusher    name" >${b.name?? `<span class="unnamed">no name</span>`}</td>
+                            <td  class="maybe last name" >${a.lastName                       }</td> 
+                            <td  class="display    name" >${a.displayName                    }</td> 
+                            <td  class="id"              >${b.uid                            }</td>
+                            <td  class="first      name" >${a.firstName                      }</td> 
+                            <td  class="last       name" >${a.lastName                       }</td> 
+                            <td  class="last       name" >${a.telephone                      }</td> 
+                            <td  class="last       name" >${a.version                        }</td> 
                             <td  lass="kids           " >${ 
                                     cleanedBrushers.length==1? "👶" :
                                     Array(i).fill("●").join("") + "👶"  +
@@ -485,7 +483,7 @@ const field = {
                                 <td  colspan="1" class="brusher id head"    >${b.subjectID} </td>  
                                 <td  colspan="4" class="brusher name head"  >${b.name} </td>  
                             </tr><tr><td  colspan="5"    class="pic" >
-                                ${ b.photoURL? `<img src=${ b.photoURL } alt="photo of ${ b.name }" >`:"No photo available"    }  </td>  
+                                ${ b.photoURL? `<img src=${ b.photoURL } alt="photo of ${ b.name }" >`:html`No photo available`}  </td>  
                             </tr>
                             ${ show.brusher.games( b)  }
                             ${ show.brusher.times( b)  }
@@ -551,13 +549,16 @@ const field = {
                                         while(  cells.length%7 ) cells.push( null );
     
                                         return html`<table class="calendar">
-                                                <tr><th colspan="7"> ${["January","February","March","April","May","June","July","August","September","October","November","December"][month]} ${year}</th></tr>
-                                                <tr>${["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map( m=>`<th >${m}</th>`).join("")}</tr>
+                                                <tr><th colspan="7"> ${[
+                                                    html`January`,html`February`,html`March`,html`April`,html`May`,html`June`,html`July`,
+                                                    html`August`,html`September`,html`October`,html`November`,html`December`
+                                                ][month]} ${year}</th></tr>
+                                                <tr>${[html`Sun`,html`Mon`,html`Tue`,html`Wed`,html`Thu`,html`Fri`,html`Sat`].map( m=>`<th >${m}</th>`).join("")}</tr>
                                                 ${ new Array( weeks).fill(0).map( ( _, week)=> 
                                                     `<tr>${ new Array( 7).fill(0).map( ( _, day)=>  
                                                         //      [ week*7+day ] is a position on this month's calendar    (0-34)
                                                         // cells[ week*7+day ] is the day number at that cell (undefined, 1-31)
-                                                        html`<td class="${ cells[ week*7+day ]? "ok":"empty"} day">
+                                                        html`<td class="${ cells[ week*7+day ]? html`ok`:html`empty`} day">
                                                              <div class="day-number">${ cells[ week*7+day ]}</div>
                                                              <div id="${  cells[ week*7+day ]? toHalfDay( new Date( year, month, cells[ week*7+day ],  0), 'UTC'):"" }" class="am" >  </div>
                                                              <div id="${  cells[ week*7+day ]? toHalfDay( new Date( year, month, cells[ week*7+day ], 12), "UTC"):"" }" class="pm" >  </div>
@@ -576,7 +577,7 @@ const field = {
                             dom.innerHTML= html`
                                         <button class="format">LIST</button>
                                         <div class="calendars">
-                                            ${ Array.from( activeMonths ).sort().map( month=> calendar( month, 2024) ).join("") }
+                                            ${ Array.from( activeMonths ).sort().map( month=> calendar( month, 2024)).join("") }
                                         </div>`;
         
                             games.forEach( game=>{        // place each game on the calendar
@@ -585,21 +586,21 @@ const field = {
                                         dom.innerHTML= html`
                                             <div class="game" data-time="${game.time.toLocaleDateString( 'en-US', dateStyle )}">
                                             <span class="points">${game.points}</span>
-                                            ${ game.rounds.map( round=> html`<span class="result ${round.result}" >&nbsp;</span>`).join("") }
+                                            ${ game.rounds.map( round=> html`<span class="result ${round.result}" >${"&nbsp;"}</span>`).join("") }
                                             </div>`});
                                                         // also create a simple chronological list of games
                             dom.innerHTML+= html`
                                     <ul id="gamelist" hidden="true">
-                                    ${ games.reverse().map( game=>  `
+                                    ${ games.reverse().map( game=>  html`
                                         <li class="game">
                                             <span class="date"  >${ toHalfDay( game.time ) }</span>
                                             <span class="time"  >${game.time.toLocaleTimeString( 'en-US', timeStyle )}</span>
                                             <span class="points">${game.points}</span>
                                             ${ game.rounds.map( round=> 
-                                                    `<span class="result ${round.result}" >${round.points}</span>`).join("") }
+                                                    html`<span class="result ${round.result}" >${round.points}</span>`).join("") }
                                     
-                                                    <span> ${ document.querySelector(`#${ toHalfDay( game.time ) }`)? "":"NOT found" }</span>
-                                                    <span> ${ unique( toHalfDay( game.time ) )? "":"DUPLICATE" }</span>
+                                                    <span> ${ document.querySelector(`#${ toHalfDay( game.time ) }`)? "": html`NOT found` }</span>
+                                                    <span> ${ unique( toHalfDay( game.time ) )? "": html`DUPLICATE` }</span>
 
                                         </li>`).join("")}            
                                     </ul>`;    
@@ -611,15 +612,15 @@ const field = {
                                 if( cal.hidden) {
                                     cal.hidden=false;
                                     list.hidden=true;
-                                    e.target.innerText="LIST";
+                                    e.target.innerText=html`LIST`;
                                     }
                                 else {
                                     cal.hidden=true;
                                     list.hidden=false;
-                                    e.target.innerText="CALENDAR";
+                                    e.target.innerText=html`CALENDAR`;
                                     }
                                 }); 
-                            document.querySelector( "td.games  span.total" ).innerText=   games?.length || "None";
+                            document.querySelector( "td.games  span.total" ).innerText=   games?.length || html`None`;
                             })
                         .catch( console.log );
                     return html`
@@ -640,10 +641,10 @@ const field = {
                                             <td class="prize name">${p.prize}</td>
                                             <td class="price"     >${p.price}</td>
                                             <td class="date      ">${p.time?
-                                                            new Date( p.time ).toLocaleDateString( 'en-US', dateStyle ) : "unknown" }</td>
-                                                        </tr>`).join("")}
-                                                        </table>`;
-                                document.querySelector( "td.prizes span.total" ).innerHTML=    doc.prizes?.length?? "None";
+                                            new Date( p.time ).toLocaleDateString( 'en-US', dateStyle ) : html`unknown` }</td>
+                                        </tr>`).join("")}
+                                    </table>`;
+                                document.querySelector( "td.prizes span.total" ).innerHTML=    doc.prizes?.length?? html`None`;
                                 });
                         return html`
                         <tr  class="brsh prizes head"><td  colspan="5" class="brsh prizes head closed" >Prizes<span class="total"></span></td></tr>
@@ -652,8 +653,8 @@ const field = {
     
                 // returns html framework and then, when data arrives, fills it with a list of gui interactions
                 tweaks:  b=>{
-                        getSessions( b.uid)
-                            .then(  doc  => {       
+                        getSessions(b.uid)
+                            .then(doc  => {       
                                 document.querySelector("td#tweaks").innerHTML+= html`
                                     <table id="tweaks"> 
                                         <tr><th>tweak</th><th>value</th><th>date</th><th>time</th></tr>
@@ -665,7 +666,7 @@ const field = {
                                             <td class="time">${new Date( t.time ).toLocaleTimeString( 'en-US', precStyle )?? "unknown"}</td>
                                                                                         </tr>`).join("")}
                                         </table>`;
-                                document.querySelector( "td.tweaks span.total" ).innerHTML=    doc.tweaks?.length?? "None";
+                                document.querySelector( "td.tweaks span.total" ).innerHTML=    doc.tweaks?.length?? html`None`;
                                 })
                             .catch( console.error );
                         return html`
@@ -673,19 +674,19 @@ const field = {
                         <tr                           ><td  colspan="5" id="tweaks"                                                           > </td></tr>`
                         },
                 times:  b=>{
-                        getGames( b.uid)
-                            .then(  games  => {       
+                        getGames(b.uid)
+                            .then(games  => {       
                                 const 
-                                    root  = document.querySelector( "td#times"),
-                                    count = document.querySelector(    ".times span.total"),
+                                    root  = document.querySelector("td#times"),
+                                    count = document.querySelector(".times span.total"),
                                     w  = root.closest("tbody"),
                                     vw = w.innerWidth  ?? w.offsetWidth,
                                     vh = w.innerHeight ?? w.offsetHeight,
-                                    n  = games?.length ??0;
+                                    n  = games?.length ?? 0;
 
 
                                 root.innerHTML += html`<canvas id="graph" width="${vw}" height="${vw/1.3}"></canvas>`;
-                                count.innerHTML = n>2? n : "Not enough Data Yet";
+                                count.innerHTML = n>2? n : `Not enough Data Yet`;
                                 if( n<3) return;
                                 
 
@@ -735,7 +736,7 @@ const field = {
 
                                     
                                     const em=  Math.round( coord.x.scale )/2;
-                                    const steelblue = " 70, 130, 180"; // steelblue with 30% opacity
+                                    const steelblue = "70, 130, 180"; // steelblue with 30% opacity
                                     const steelrust = "185, 125,  75"; // anti-steelblue with 30% opacity
                                         
                                     // thin black lines
@@ -752,12 +753,12 @@ const field = {
                                         let dom = date.getUTCDate();
                                         let dow = date.getUTCDay();
                                         let mon = date.getUTCMonth();
-                                        let month = "JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER".split(",")[mon];
+                                        let month = html`JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER`.split(",")[mon];
                                         ctx.strokeStyle = `rgb( ${dow==0||dow==6? steelrust : steelblue}, ${0.3-0.2*(dom/30)})`;
                                         ctx.lineWidth = coord.x.scale-4;
                                         ctx.beginPath();
-                                        ctx.moveTo( x, coord.y.margin);
-                                        ctx.lineTo( x, coord.y.max);
+                                        ctx.moveTo(x, coord.y.margin);
+                                        ctx.lineTo(x, coord.y.max);
                                         ctx.stroke();
 
                                         ctx.textAlign = 'center';
@@ -812,7 +813,7 @@ const field = {
 
 
                                 ctx.fillStyle = "rgb(0 100 200 / 50%)";
-                                times.forEach( markPoint);       
+                                times.forEach(markPoint);       
 
                                 // console.log({ doc, times});
                     
