@@ -40,11 +40,3 @@ Feed the keys and the context for each to a context-aware translation API and sa
 Test
 ----
 Run the app with the new dictionary.
-
-
-
-
-
-
-
-/
